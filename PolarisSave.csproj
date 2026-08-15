@@ -1,9 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <AssemblyName>PolarisSave</AssemblyName>
     <RootNamespace>Polaris.Save</RootNamespace>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <ItemGroup><ProjectReference Include="..\PolarisCore\PolarisCore.csproj" /></ItemGroup>
+
+  <!--
+    netstandard2.1：作为 Core 组件加载的游戏运行时目标，含 Integration 层。
+    netstandard2.0：Api/Serialization/Format/Runtime 组成的纯存档内核，不依赖游戏、Unity、
+    BepInEx 或 Harmony，供 net8.0 单元测试直接引用。
+  -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <ProjectReference Include="..\PolarisCore\PolarisCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <Compile Remove="PolarisSaveComponent.cs" />
+    <Compile Remove="Integration\**\*.cs" />
+    <Compile Remove="Api\SaveVector2.Game.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="tests\**\*.cs" />
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>PolarisSave.Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <Import Project="build\Polaris.Runtime.props" />
 </Project>
