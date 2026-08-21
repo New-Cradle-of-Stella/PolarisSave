@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using System.Text;
 using Polaris.Save.Format;
@@ -19,7 +20,7 @@ namespace Polaris.Save.Serialization
             {
                 text = StrictUtf8.GetString(payload);
             }
-            catch (System.ArgumentException)
+            catch (ArgumentException)
             {
                 throw new PolarisSaveException("分区 payload 不是合法 UTF-8。");
             }

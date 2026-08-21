@@ -71,11 +71,10 @@ namespace Polaris.Save.Format
                 return SaveContainerReadResult.Corrupt($"分区数量 {partitionCount} 超过上限 {SaveFormatLimits.MaxPartitions}。");
             }
 
-            int partitionsEnd = footerStart;
             List<SavePartitionRecord> partitions;
             try
             {
-                partitions = ReadPartitions(data, start + SaveFormatLimits.HeaderSize, partitionsEnd, (int)partitionCount);
+                partitions = ReadPartitions(data, start + SaveFormatLimits.HeaderSize, footerStart, (int)partitionCount);
             }
             catch (PolarisSaveException ex)
             {

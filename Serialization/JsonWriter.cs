@@ -16,13 +16,6 @@ namespace Polaris.Save.Serialization
             return Utf8.GetBytes(builder.ToString());
         }
 
-        internal static string WriteToString(JsonValue value)
-        {
-            var builder = new StringBuilder(256);
-            Write(builder, value, 1);
-            return builder.ToString();
-        }
-
         static void Write(StringBuilder builder, JsonValue value, int depth)
         {
             if (depth > SaveFormatLimits.MaxDepth)

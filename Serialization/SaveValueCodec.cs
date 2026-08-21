@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Polaris.Save.Serialization
 {
@@ -12,8 +13,6 @@ namespace Polaris.Save.Serialization
         static readonly Dictionary<Type, object> Converters = BuildConverters();
 
         static readonly Dictionary<Type, object> EnumConverters = new Dictionary<Type, object>();
-
-        internal static bool IsSupported(Type type) => TryGetConverter(type, out _);
 
         internal static JsonValue Encode<T>(T value, string context)
         {
@@ -137,7 +136,7 @@ namespace Polaris.Save.Serialization
         internal static JsonValue Encode<T>(T value)
             where T : struct, Enum
         {
-            var invariant = System.Globalization.CultureInfo.InvariantCulture;
+            CultureInfo invariant = CultureInfo.InvariantCulture;
             return Enum.GetUnderlyingType(typeof(T)) == typeof(ulong)
                 ? JsonScalars.Encode(Convert.ToUInt64(value, invariant))
                 : JsonScalars.Encode(Convert.ToInt64(value, invariant));

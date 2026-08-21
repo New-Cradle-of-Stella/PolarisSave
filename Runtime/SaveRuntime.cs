@@ -39,21 +39,7 @@ namespace Polaris.Save.Runtime
         /// <summary>磁盘上还有人工可恢复的数据，本次会话拒绝普通保存。</summary>
         internal bool IsReadOnlyRecovery
         {
-            get
-            {
-                lock (gate)
-                {
-                    foreach (SaveIssue issue in issues)
-                    {
-                        if (issue.BlocksSaving)
-                        {
-                            return true;
-                        }
-                    }
-
-                    return false;
-                }
-            }
+            get { lock (gate) { return IsReadOnlyRecoveryLocked(); } }
         }
 
         internal SaveHandle<T> Register<T>(string id, ushort version, Func<T> factory)
@@ -214,7 +200,7 @@ namespace Polaris.Save.Runtime
         {
             lock (gate)
             {
-                bool changed = preserved.Count != 0 || issues.Count != 0;
+                bool changed = preserved.Count != 0 || issues.Count != 0 || loadedVersions.Count != 0;
                 ResetLocked();
                 return changed;
             }
