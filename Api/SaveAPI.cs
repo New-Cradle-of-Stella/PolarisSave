@@ -14,13 +14,13 @@ namespace Polaris.Save
     /// public static class MyModSave
     /// {
     ///     public static readonly SaveHandle&lt;MyWorldData&gt; World =
-    ///         PolarisSaveAPI.Register&lt;MyWorldData&gt;("com.example.my-mod/world", version: 2);
+    ///         SaveAPI.Register&lt;MyWorldData&gt;("com.example.my-mod/world", version: 2);
     /// }
     ///
     /// MyModSave.World.Current.Counter++;
     /// </code>
     /// </example>
-    public static class PolarisSaveAPI
+    public static class SaveAPI
     {
         /// <summary>注册一个分区。<typeparamref name="T"/> 的无参构造出来的状态就是"全新存档"的默认值。</summary>
         /// <param name="id">全局唯一的稳定 ID，建议用 <c>BepInEx GUID/分区名</c>，发布后不能改名。</param>
