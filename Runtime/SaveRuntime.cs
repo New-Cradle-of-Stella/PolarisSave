@@ -5,8 +5,8 @@ using Polaris.Save.Format;
 namespace Polaris.Save.Runtime
 {
     /// <summary>
-    /// 注册表 + 会话状态 + 失败门。整套逻辑不碰任何游戏类型，所以能被单元测试完整驱动；
-    /// Integration 层只负责把原版的字节流递进来、把结果递出去。
+    /// 注册表 + 会话状态 + 失败门，整套逻辑不碰任何游戏类型；Integration 层只负责把原版的字节流
+    /// 递进来、把结果递出去。
     /// </summary>
     internal sealed class SaveRuntime
     {

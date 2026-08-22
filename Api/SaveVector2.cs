@@ -1,9 +1,9 @@
 namespace Polaris.Save
 {
     /// <summary>
-    /// 存档里的二维坐标。公开 API 不引用 <c>UnityEngine.Vector2</c>：存档内核要能在没有 Unity 的
-    /// 环境里编译和测试。游戏运行时目标里补了与 <c>Vector2</c>、<c>GameVector2</c> 的隐式互转，
-    /// 模组按平时的写法传值即可。
+    /// 存档里的二维坐标。公开 API 不引用 <c>UnityEngine.Vector2</c>，因为存档内核要能脱离 Unity
+    /// 独立编译；游戏运行时目标里补了与 <c>Vector2</c>、<c>GameVector2</c> 的隐式互转，模组按平时
+    /// 的写法传值即可。
     /// </summary>
     public readonly partial struct SaveVector2
     {

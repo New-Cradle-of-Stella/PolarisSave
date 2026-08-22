@@ -128,7 +128,7 @@ namespace Polaris.Save.Serialization
     }
 
     /// <summary>
-    /// enum 与 JSON 数字之间的转换，按底层类型精确往返。名字改了不影响存档，值重排了才需要迁移。
+    /// enum 与 JSON 数字之间的转换，按底层类型精确往返。
     /// 解码走底层类型的解析器而不是 <c>Enum.ToObject(long)</c>——后者会把超范围的值静默截断。
     /// </summary>
     internal static class EnumCodec

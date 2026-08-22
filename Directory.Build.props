@@ -20,11 +20,7 @@
     <AicManagedDir Condition="'$(AicGameDir)' != ''">$(AicGameDir)\AliceInCradle_Data\Managed</AicManagedDir>
   </PropertyGroup>
 
-  <!--
-    netstandard2.0 目标是不碰游戏/Unity 的纯存档内核（Api/Serialization/Format/Runtime），
-    单元测试引用的就是它，所以它和 tests/ 下的 net8.0 测试项目都必须能在没装游戏的机器上
-    构建；只有 netstandard2.1 目标需要游戏程序集，所以校验只挂在它上面。
-  -->
+  <!-- 只有 netstandard2.1 目标需要游戏程序集。 -->
   <Target Name="CheckAicGameDir" BeforeTargets="ResolveAssemblyReferences"
           Condition="'$(TargetFramework)' == 'netstandard2.1'">
     <Error Condition="'$(AicGameDir)' == ''"

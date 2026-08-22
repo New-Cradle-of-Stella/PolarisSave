@@ -4,10 +4,10 @@ using Polaris.Save.Serialization;
 namespace Polaris.Save
 {
     /// <summary>
-    /// <c>Member</c> 的强类型入口。V1 支持的类型就是这里列出的这些：bool、全部整数类型、
-    /// float/double/decimal、string、char、byte[]、Guid、DateTime、enum 和 <see cref="SaveVector2"/>。
-    /// 任意对象、委托、<see cref="Type"/>、UnityEngine 对象都<b>不</b>支持——存档里不该藏着一条
-    /// 能构造任意 CLR 类型的路径。自定义类型请实现 <see cref="IPolarisSaveData"/> 并用 <c>Child</c>。
+    /// <c>Member</c> 的强类型入口，仅支持 bool、全部整数类型、float/double/decimal、string、char、
+    /// byte[]、Guid、DateTime、enum 和 <see cref="SaveVector2"/>；任意对象、委托、<see cref="Type"/>、
+    /// UnityEngine 对象都<b>不</b>支持，因为存档里不该藏着一条能构造任意 CLR 类型的路径。
+    /// 自定义类型请实现 <see cref="IPolarisSaveData"/> 并用 <c>Child</c>。
     /// </summary>
     /// <remarks>读取时存档里缺这个 key 就写入 <c>fallback</c>；key 在但类型对不上则报错并隔离该分区。</remarks>
     public sealed partial class SaveArchive

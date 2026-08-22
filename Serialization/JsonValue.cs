@@ -14,9 +14,8 @@ namespace Polaris.Save.Serialization
     }
 
     /// <summary>
-    /// PolarisSave 自己的 JSON 文档模型。刻意不用通用 JSON 库的 JObject/JToken：这个模型只能表达
-    /// null/bool/number/string/object/array，没有任何"按存档内容构造 CLR 类型"的路径，
-    /// 也就不存在需要关掉的 TypeNameHandling。它是纯内部实现，不出现在公开 API 上。
+    /// PolarisSave 自己的 JSON 文档模型，刻意不用通用 JSON 库的 JObject/JToken。
+    /// 这个模型只能表达 null/bool/number/string/object/array，没有任何"按存档内容构造 CLR 类型"的路径，也就不存在需要关掉的 TypeNameHandling。
     /// </summary>
     internal sealed class JsonValue
     {
